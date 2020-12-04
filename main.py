@@ -1,4 +1,11 @@
-class Animal():
+from Shape import Circle, name_shapes
+
+circle = Circle(1)
+circle.area()
+name_shapes()
+
+
+class Animal:
     def __init__(self, name):
         self.name = name
 
