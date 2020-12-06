@@ -31,6 +31,18 @@ def employee_read(request):
     return render(request, "Crudapp/employee_read.html", context)
 
 
+# Only updating name here, can update other attributes similarly
+@csrf_exempt
+def employee_update(request):
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+    id = body['id']
+    employee = Employee.objects.get(pk=id)
+    employee.name = body['name']
+    employee.save()
+    return redirect('/employee/list')
+
+
 def employee_delete(request):
     id = request.GET.get('id')
     employee = Employee.objects.get(pk=id)
